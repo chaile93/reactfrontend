@@ -1,0 +1,22 @@
+import React from 'react';
+import { useForm } from 'react-hook-form';
+
+const CharacterForm = ({ character }) => {
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = (data) => {
+    // Handle form submission (create or update character)
+    console.log(data);
+    reset();
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input type="text" defaultValue={character?.name} {...register("name", { required: true })} />
+      <input type="text" defaultValue={character?.description} {...register("description", { required: true })} />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default CharacterForm;
